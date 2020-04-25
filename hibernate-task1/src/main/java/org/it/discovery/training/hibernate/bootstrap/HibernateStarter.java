@@ -1,31 +1,25 @@
 package org.it.discovery.training.hibernate.bootstrap;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.it.discovery.training.hibernate.model.Publisher;
-import org.it.discovery.training.hibernate.util.HibernateUtil;
+import org.it.discovery.training.hibernate.repository.HibernatePublisherRepository;
+import org.it.discovery.training.hibernate.repository.PublisherRepository;
+
+import java.time.LocalDateTime;
 
 public class HibernateStarter {
 
-	public static void main(String[] args) {
-		Session session = null;
-		try (SessionFactory factory = HibernateUtil.getSessionFactory()) {
+    public static void main(String[] args) {
+        PublisherRepository repository = new HibernatePublisherRepository();
+        Publisher publisher = new Publisher();
 
-			session = factory.getCurrentSession();
-			session.beginTransaction();
-			// Persistent operations
+        publisher.setName("Packt");
+        publisher.setCreatedAt(LocalDateTime.now());
 
-            Publisher publisher = new Publisher();
-            session.save(publisher);
+        repository.save(publisher);
 
-			session.getTransaction().commit();
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			if (session != null) {
-				session.getTransaction().rollback();
-			}
-		}
+        System.out.println(publisher);
+        System.out.println(repository.findById(publisher.getId()));
 
-	}
+    }
 
 }

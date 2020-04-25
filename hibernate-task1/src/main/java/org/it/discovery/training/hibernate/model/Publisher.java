@@ -2,6 +2,7 @@ package org.it.discovery.training.hibernate.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,6 +21,7 @@ import java.util.List;
 @Setter
 @Table
 @Entity
+@ToString
 public class Publisher {
 	private String name;
     @Transient
@@ -27,7 +29,7 @@ public class Publisher {
     @Id
 	private int id;
 
-	private LocalDateTime created;
+	private LocalDateTime createdAt;
 
 	private LocalDateTime modified;
 

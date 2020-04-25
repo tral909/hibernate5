@@ -1,8 +1,8 @@
 package org.it.discovery.training.hibernate.repository;
 
-import java.util.List;
-
 import org.it.discovery.training.hibernate.model.Publisher;
+
+import java.util.List;
 
 public interface PublisherRepository {
 	
@@ -14,7 +14,7 @@ public interface PublisherRepository {
 
 	/**
 	 * Saves all publisher instances
-	 * @param publisher
+	 * @param publishers
 	 */
 	void saveAll(List<Publisher> publishers);
 	
@@ -27,8 +27,8 @@ public interface PublisherRepository {
 	/**
 	 * Returns publisher with specified identifier.
 	 * If no publisher exists then NULL should be returned
-	 * @param publisher
+	 * @param publisherId
 	 * @return
 	 */
-	Publisher findById(int publisher);
+	Publisher findById(int publisherId);
 }
