@@ -20,6 +20,7 @@ public class HqlBookRepository implements BookRepository {
             session = sessionFactory.getCurrentSession();
             session.beginTransaction();
             Query<Book> query = session.createQuery("FROM Book", Book.class);
+            query.setCacheable(true);
             List<Book> books = query.list();
             session.getTransaction().commit();
             return books;

@@ -31,10 +31,18 @@ public class HibernateStarter {
 
 			System.out.println(publisher);
 
+			System.out.println("--- Querying from cache");
+			System.out.println(repository.findById(publisher.getId()));
+			System.out.println(repository.findById(publisher.getId()));
 			System.out.println(repository.findById(publisher.getId()));
 
+			System.out.println("--- end querying from cache");
 			BookRepository bookRepository = new HqlBookRepository(factory);
+			System.out.println("--- Querying from cache");
 			System.out.println("All books: " + bookRepository.findAll());
+			System.out.println("All books: " + bookRepository.findAll());
+			System.out.println("All books: " + bookRepository.findAll());
+			System.out.println("--- end querying from cache");
 			System.out.println("Books with name MySQL: " + bookRepository.findWithName("MySQL"));
 
 			BookRepository namedBookRepository = new NamedHqlBookRepository(factory);

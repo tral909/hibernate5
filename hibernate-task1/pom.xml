@@ -7,4 +7,17 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>hibernate-task1</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jcache</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>3.8.1</version>
+		</dependency>
+	</dependencies>
 </project>

@@ -3,6 +3,7 @@ package org.it.discovery.training.hibernate.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
 @ToString(exclude = "hits")
 @NamedQuery(name = Book.QUERY_FIND_ALL, query = "FROM Book")
 @NamedQuery(name = Book.QUERY_FIND_BY_NAME, query = "FROM Book WHERE name=:name")
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Book extends BaseEntity {
     public static final String QUERY_FIND_ALL = "Book.findAll";
 
