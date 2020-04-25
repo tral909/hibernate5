@@ -2,6 +2,7 @@ package org.it.discovery.training.hibernate.bootstrap;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.it.discovery.training.hibernate.model.Book;
 import org.it.discovery.training.hibernate.model.Publisher;
 import org.it.discovery.training.hibernate.repository.PublisherRepository;
 import org.it.discovery.training.hibernate.repository.hibernate.HibernatePublisherRepository;
@@ -19,6 +20,10 @@ public class HibernateStarter {
 			Publisher publisher = new Publisher();
 			publisher.setName("Packt");
 			publisher.setCreatedAt(LocalDateTime.now());
+
+			Book book = new Book();
+			book.setName("Hibernate");
+			publisher.addBook(book);
 			repository.save(publisher);
 
 			System.out.println(publisher);

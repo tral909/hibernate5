@@ -5,11 +5,9 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 /**
  * Book in a library
@@ -19,13 +17,15 @@ import javax.persistence.Transient;
 @Table
 @Entity
 @Getter @Setter
+@ToString(exclude = "hits")
 public class Book {
 	private String name;
 
-	@Transient
+	@OneToOne
 	private Person author;
 
-	@Transient
+	@ManyToOne
+	@JoinColumn(name = "PUBLISHER_ID")
 	private Publisher publisher;
 	
 	/**
@@ -38,10 +38,11 @@ public class Book {
 	 */
 	private int pages;
 
-	@Transient
+	@OneToMany
 	private List<Hit> hits;
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	private LocalDateTime created;
