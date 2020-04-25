@@ -8,9 +8,10 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Table
+//@Table
 @Entity
-public class Hit {
+@DiscriminatorValue("hit")
+public class Hit extends BaseEntity {
 
 	private String ip;
 	
@@ -20,13 +21,5 @@ public class Hit {
 
 	@ManyToOne
 	private Book book;
-
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-	
-	private LocalDateTime created;
-	
-	private LocalDateTime modified;
 
 }

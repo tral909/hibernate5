@@ -1,20 +1,26 @@
 package org.it.discovery.training.hibernate.model;
 
-import java.time.LocalDateTime;
-
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter @Setter
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+@Getter
+@Setter
+@ToString
+@Entity
+@Table(name = "library")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name = "type")
 public abstract class BaseEntity {
-	private int id;
-	
-	private LocalDateTime created;
-	
-	private LocalDateTime modified;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 
-	public int getId() {
-		return id;
-	}
-	
+    private LocalDateTime created;
+
+    private LocalDateTime modified;
+
 }

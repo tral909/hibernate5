@@ -14,7 +14,7 @@ public class HibernateStarter {
         Publisher publisher = new Publisher();
 
         publisher.setName("Packt");
-        publisher.setCreatedAt(LocalDateTime.now());
+        publisher.setCreated(LocalDateTime.now());
 
         Book book = new Book();
         book.setName("Hibernate");

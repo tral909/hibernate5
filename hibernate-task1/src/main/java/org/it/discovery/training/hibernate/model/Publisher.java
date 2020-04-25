@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,22 +16,15 @@ import java.util.List;
  */
 @Getter
 @Setter
-@Table
+//@Table
 @Entity
-@ToString(exclude = "books")
-public class Publisher {
+@ToString(callSuper = true, exclude = "books")
+@DiscriminatorValue("publisher")
+public class Publisher extends BaseEntity {
 
 	private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisher")
 	private List<Book> books = new ArrayList<>();
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-
-	private LocalDateTime createdAt;
-
-	private LocalDateTime modified;
 
 }

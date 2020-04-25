@@ -3,10 +3,8 @@ package org.it.discovery.training.hibernate.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -16,10 +14,11 @@ import java.util.List;
  */
 @Getter
 @Setter
-@Table
+//@Table
 @Entity
 @ToString(exclude = "hits")
-public class Book {
+@DiscriminatorValue("book")
+public class Book extends BaseEntity {
 
 	private String name;
 
@@ -43,14 +42,5 @@ public class Book {
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Hit> hits;
-
-    @Id
-    @GeneratedValue(generator = "counter")
-    @GenericGenerator(name = "counter", strategy = "org.it.discovery.training.hibernate.generator.CounterGenerator")
-	private int id;
-	
-	private LocalDateTime createdAt;
-	
-	private LocalDateTime modified;
 
 }
