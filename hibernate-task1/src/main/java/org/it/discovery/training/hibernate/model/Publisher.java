@@ -5,11 +5,9 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 /**
  * Book publisher
@@ -28,9 +26,11 @@ public class Publisher {
 	private List<Book> books;
 
 	@Id
+	@GeneratedValue(generator = "counter")
+	@GenericGenerator(name = "counter", strategy = "org.it.discovery.training.hibernate.generator.CounterGenerator")
 	private int id;
 
-	private LocalDateTime created;
+	private LocalDateTime createdAt;
 
 	private LocalDateTime modified;
 
