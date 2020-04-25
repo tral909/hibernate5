@@ -38,7 +38,7 @@ public class Book {
 	 */
 	private int pages;
 
-	@OneToMany
+	@OneToMany(mappedBy = "book")
 	private List<Hit> hits;
 
 	@Id

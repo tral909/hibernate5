@@ -25,7 +25,7 @@ import javax.persistence.*;
 public class Publisher {
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "publisher")
 	private List<Book> books;
 
 	@Id

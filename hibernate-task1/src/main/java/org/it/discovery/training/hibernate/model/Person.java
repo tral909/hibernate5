@@ -22,7 +22,7 @@ public class Person {
 	/**
 	 * Books that person has written
 	 */
-	@OneToMany
+	@OneToMany(mappedBy = "author")
 	private List<Book> books;
 
 	@Id
