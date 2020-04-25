@@ -4,8 +4,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.it.discovery.training.hibernate.model.Book;
 import org.it.discovery.training.hibernate.model.Publisher;
+import org.it.discovery.training.hibernate.repository.BookRepository;
 import org.it.discovery.training.hibernate.repository.PublisherRepository;
 import org.it.discovery.training.hibernate.repository.hibernate.HibernatePublisherRepository;
+import org.it.discovery.training.hibernate.repository.hql.HqlBookRepository;
 import org.it.discovery.training.hibernate.util.HibernateUtil;
 
 import java.time.LocalDateTime;
@@ -29,6 +31,10 @@ public class HibernateStarter {
 			System.out.println(publisher);
 
 			System.out.println(repository.findById(publisher.getId()));
+
+			BookRepository bookRepository = new HqlBookRepository(factory);
+			System.out.println("All books: " + bookRepository.findAll());
+			System.out.println("Books with name MySQL: " + bookRepository.findWithName("MySQL"));
 
 
 		} catch (Exception ex) {
