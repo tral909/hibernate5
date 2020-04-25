@@ -1,10 +1,14 @@
 package org.it.discovery.training.hibernate.model;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Book in a library
@@ -12,11 +16,13 @@ import lombok.Setter;
  *
  */
 @Getter @Setter
+@Table
+@Entity
 public class Book {
 	private String name;
-	
+    @Transient
 	private Person author;
-	
+    @Transient
 	private Publisher publisher;
 	
 	/**
@@ -28,9 +34,9 @@ public class Book {
 	 * Total number of pages
 	 */
 	private int pages;
-	
+    @Transient
 	private List<Hit> hits;
-	
+	@Id
 	private int id;
 	
 	private LocalDateTime created;

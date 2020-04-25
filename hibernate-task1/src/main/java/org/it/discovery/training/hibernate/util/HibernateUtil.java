@@ -1,15 +1,18 @@
 package org.it.discovery.training.hibernate.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.service.ServiceRegistry;
+import org.it.discovery.training.hibernate.model.Book;
+import org.it.discovery.training.hibernate.model.Hit;
+import org.it.discovery.training.hibernate.model.Person;
 import org.it.discovery.training.hibernate.model.Publisher;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class HibernateUtil {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
@@ -23,6 +26,9 @@ public class HibernateUtil {
 			ServiceRegistry registry = new StandardServiceRegistryBuilder().applySettings(loadProperties()).build();
 			MetadataSources sources = new MetadataSources(registry);
 			sources.addAnnotatedClass(Publisher.class);
+            sources.addAnnotatedClass(Book.class);
+            sources.addAnnotatedClass(Hit.class);
+            sources.addAnnotatedClass(Person.class);
 
 			return sources.buildMetadata().buildSessionFactory();
 		} catch (HibernateException ex) {
