@@ -14,10 +14,9 @@ import java.util.List;
  */
 @Getter
 @Setter
-//@Table
+@Table
 @Entity
 @ToString(exclude = "hits")
-@DiscriminatorValue("book")
 public class Book extends BaseEntity {
 
 	private String name;

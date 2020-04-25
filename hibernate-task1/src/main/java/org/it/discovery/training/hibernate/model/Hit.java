@@ -8,9 +8,8 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-//@Table
+@Table
 @Entity
-@DiscriminatorValue("hit")
 public class Hit extends BaseEntity {
 
 	private String ip;

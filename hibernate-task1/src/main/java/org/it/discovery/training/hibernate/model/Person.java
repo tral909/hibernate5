@@ -13,9 +13,8 @@ import java.util.List;
  */
 @Getter
 @Setter
-//@Table
+@Table
 @Entity
-@DiscriminatorValue("person")
 public class Person extends BaseEntity {
 	private String name;
 	

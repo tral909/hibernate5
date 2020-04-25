@@ -16,10 +16,9 @@ import java.util.List;
  */
 @Getter
 @Setter
-//@Table
+@Table
 @Entity
 @ToString(callSuper = true, exclude = "books")
-@DiscriminatorValue("publisher")
 public class Publisher extends BaseEntity {
 
 	private String name;

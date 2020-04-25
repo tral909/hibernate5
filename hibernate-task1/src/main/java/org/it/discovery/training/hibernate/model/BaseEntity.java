@@ -10,10 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-@Entity
-@Table(name = "library")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name = "type")
+@MappedSuperclass
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
