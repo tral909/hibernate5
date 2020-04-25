@@ -2,11 +2,9 @@ package org.it.discovery.training.hibernate.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,7 +13,8 @@ import java.util.List;
  * @author morenets
  *
  */
-@Getter @Setter
+@Getter
+@Setter
 @Table
 @Entity
 public class Book {
@@ -34,9 +33,13 @@ public class Book {
 	 * Total number of pages
 	 */
 	private int pages;
+
     @Transient
 	private List<Hit> hits;
-	@Id
+
+    @Id
+    @GeneratedValue(generator = "counter")
+    @GenericGenerator(name = "counter", strategy = "org.it.discovery.training.hibernate.generator.CounterGenerator")
 	private int id;
 	
 	private LocalDateTime created;
