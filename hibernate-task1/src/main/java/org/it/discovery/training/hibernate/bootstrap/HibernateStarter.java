@@ -2,6 +2,7 @@ package org.it.discovery.training.hibernate.bootstrap;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.it.discovery.training.hibernate.model.Publisher;
 import org.it.discovery.training.hibernate.util.HibernateUtil;
 
 public class HibernateStarter {
@@ -13,6 +14,8 @@ public class HibernateStarter {
 			session = factory.getCurrentSession();
 			session.beginTransaction();
 			// Persistent operations
+			Publisher publisher = new Publisher();
+			session.save(publisher);
 
 			session.getTransaction().commit();
 		} catch (Exception ex) {

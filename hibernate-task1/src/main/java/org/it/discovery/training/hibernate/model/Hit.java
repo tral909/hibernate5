@@ -5,6 +5,13 @@ import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Table
+@Entity
 @Getter @Setter
 public class Hit {
 	private String ip;
@@ -12,9 +19,11 @@ public class Hit {
 	private String browser;
 	
 	private LocalDateTime viewed;
-	
+
+	@Transient
 	private Book book;
-	
+
+	@Id
 	private int id;
 	
 	private LocalDateTime created;
