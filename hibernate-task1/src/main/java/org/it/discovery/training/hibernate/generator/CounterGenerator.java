@@ -5,13 +5,15 @@ import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
 
 import java.io.Serializable;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CounterGenerator implements IdentifierGenerator {
-    private int counter = 0;
+    private AtomicInteger counter = new AtomicInteger(0);
 
     @Override
     public Serializable generate(SharedSessionContractImplementor sharedSessionContractImplementor,
                                  Object o) throws HibernateException {
-        return counter++;
+        //TODO Add unit-tests for multi-threading use-cases
+        return counter.incrementAndGet();
     }
 }

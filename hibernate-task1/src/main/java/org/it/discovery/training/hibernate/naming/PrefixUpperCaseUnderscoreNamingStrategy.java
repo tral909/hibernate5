@@ -7,12 +7,12 @@ import org.hibernate.engine.jdbc.env.spi.JdbcEnvironment;
 public class PrefixUpperCaseUnderscoreNamingStrategy extends PhysicalNamingStrategyStandardImpl {
     @Override
     public Identifier toPhysicalTableName(Identifier name, JdbcEnvironment context) {
-        return Identifier.toIdentifier(name.getText().toUpperCase(), name.isQuoted());
+        return Identifier.toIdentifier(convertText(name.getText()), name.isQuoted());
     }
 
     @Override
     public Identifier toPhysicalColumnName(Identifier name, JdbcEnvironment context) {
-        return super.toPhysicalColumnName(name, context);
+        return Identifier.toIdentifier(convertText(name.getText()), name.isQuoted());
     }
 
     private String convertText(String text) {

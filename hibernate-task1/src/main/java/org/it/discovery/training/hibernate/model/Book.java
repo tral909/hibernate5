@@ -42,7 +42,7 @@ public class Book {
     @GenericGenerator(name = "counter", strategy = "org.it.discovery.training.hibernate.generator.CounterGenerator")
 	private int id;
 	
-	private LocalDateTime created;
+	private LocalDateTime createdAt;
 	
 	private LocalDateTime modified;
 
