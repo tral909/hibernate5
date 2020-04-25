@@ -1,43 +1,48 @@
 package org.it.discovery.training.hibernate.model;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Book in a library
- * @author morenets
  *
+ * @author morenets
  */
 @Table
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @ToString(exclude = "hits")
-public class Book extends BaseEntity{
-	private String name;
+@NamedQuery(name = Book.QUERY_FIND_ALL, query = "FROM Book")
+@NamedQuery(name = Book.QUERY_FIND_BY_NAME, query = "FROM Book WHERE name=:name")
+public class Book extends BaseEntity {
+    public static final String QUERY_FIND_ALL = "Book.findAll";
 
-	@OneToOne
-	private Person author;
+    public static final String QUERY_FIND_BY_NAME = "Book.findByName";
 
-	@ManyToOne
-	@JoinColumn(name = "PUBLISHER_ID")
-	private Publisher publisher;
-	
-	/**
-	 * Publishing year
-	 */
-	private int year;
-	
-	/**
-	 * Total number of pages
-	 */
-	private int pages;
+    private String name;
 
-	@OneToMany(mappedBy = "book")
-	private List<Hit> hits;
+    @OneToOne
+    private Person author;
+
+    @ManyToOne
+    @JoinColumn(name = "PUBLISHER_ID")
+    private Publisher publisher;
+
+    /**
+     * Publishing year
+     */
+    private int year;
+
+    /**
+     * Total number of pages
+     */
+    private int pages;
+
+    @OneToMany(mappedBy = "book")
+    private List<Hit> hits;
 }
