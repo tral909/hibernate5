@@ -14,11 +14,10 @@ import javax.persistence.*;
  * @author morenets
  *
  */
-//@Table
+@Table
 @Entity
 @Getter @Setter
 @ToString(exclude = "hits")
-@DiscriminatorValue("b")
 public class Book extends BaseEntity{
 	private String name;
 

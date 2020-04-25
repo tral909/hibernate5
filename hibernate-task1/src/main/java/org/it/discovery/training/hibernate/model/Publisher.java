@@ -19,10 +19,9 @@ import javax.persistence.*;
  */
 @Getter
 @Setter
-//@Table
+@Table
 @Entity
 @ToString
-@DiscriminatorValue("r")
 public class Publisher extends BaseEntity {
 	private String name;
 

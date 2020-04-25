@@ -13,10 +13,9 @@ import javax.persistence.*;
  * @author admin
  *
  */
-//@Table
+@Table
 @Entity
 @Getter @Setter
-@DiscriminatorValue("p")
 public class Person extends BaseEntity{
 	private String name;
 	

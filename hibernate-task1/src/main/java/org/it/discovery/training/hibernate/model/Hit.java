@@ -7,10 +7,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-//@Table
+@Table
 @Entity
 @Getter @Setter
-@DiscriminatorValue("h")
 public class Hit extends BaseEntity{
 	private String ip;
 	

@@ -8,9 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Getter @Setter
-@Entity
-@Table(name = "LIBRARY")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@MappedSuperclass
 public abstract class BaseEntity {
 	@Id
 	@GeneratedValue
