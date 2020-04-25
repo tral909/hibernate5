@@ -1,15 +1,18 @@
-package org.it.discovery.training.hibernate.repository;
+package org.it.discovery.training.hibernate.repository.hibernate;
 
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.it.discovery.training.hibernate.model.Publisher;
+import org.it.discovery.training.hibernate.repository.PublisherRepository;
 import org.it.discovery.training.hibernate.util.HibernateUtil;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 public class HibernatePublisherRepository implements PublisherRepository {
 
-    private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    private static final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
     @Override
     public void save(Publisher publisher) {
