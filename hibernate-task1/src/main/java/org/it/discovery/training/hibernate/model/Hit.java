@@ -3,10 +3,7 @@ package org.it.discovery.training.hibernate.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,22 +11,22 @@ import java.time.LocalDateTime;
 @Table
 @Entity
 public class Hit {
+
 	private String ip;
 	
 	private String browser;
 	
 	private LocalDateTime viewed;
-    @Transient
+
+	@ManyToOne
 	private Book book;
+
 	@Id
-	private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 	
 	private LocalDateTime created;
 	
 	private LocalDateTime modified;
-	
-	public Book getBook() {
-		return book;
-	}
 
 }

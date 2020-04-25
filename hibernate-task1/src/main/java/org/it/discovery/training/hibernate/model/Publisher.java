@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,19 +19,20 @@ import java.util.List;
 @Setter
 @Table
 @Entity
-@ToString
+@ToString(exclude = "books")
 public class Publisher {
+
 	private String name;
-    @Transient
-	private List<Book> books;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisher")
+	private List<Book> books = new ArrayList<>();
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
 	private LocalDateTime createdAt;
 
 	private LocalDateTime modified;
 
-	public List<Book> getBooks() {
-		return books;
-	}
 }

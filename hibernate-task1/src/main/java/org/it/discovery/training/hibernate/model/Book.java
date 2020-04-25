@@ -2,6 +2,7 @@ package org.it.discovery.training.hibernate.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -17,11 +18,17 @@ import java.util.List;
 @Setter
 @Table
 @Entity
+@ToString(exclude = "hits")
 public class Book {
+
 	private String name;
-    @Transient
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
 	private Person author;
-    @Transient
+
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
 	private Publisher publisher;
 	
 	/**
@@ -34,7 +41,7 @@ public class Book {
 	 */
 	private int pages;
 
-    @Transient
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Hit> hits;
 
     @Id
@@ -46,15 +53,4 @@ public class Book {
 	
 	private LocalDateTime modified;
 
-	public Person getAuthor() {
-		return author;
-	}
-
-	public Publisher getPublisher() {
-		return publisher;
-	}
-
-	public List<Hit> getHits() {
-		return hits;
-	}
 }

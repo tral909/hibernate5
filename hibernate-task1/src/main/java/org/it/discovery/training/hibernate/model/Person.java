@@ -3,10 +3,7 @@ package org.it.discovery.training.hibernate.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,16 +20,15 @@ public class Person {
 	private String name;
 	
 	/** Books that person has written */
-    @Transient
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "author", orphanRemoval = true)
 	private List<Book> books;
+
 	@Id
-	private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
 	
 	private LocalDateTime created;
 	
 	private LocalDateTime modified;
 
-	public List<Book> getBooks() {
-		return books;
-	}
 }
