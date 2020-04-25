@@ -5,6 +5,7 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ import javax.persistence.*;
 @Setter
 @Table
 @Entity
+@ToString
 public class Publisher {
 	private String name;
 

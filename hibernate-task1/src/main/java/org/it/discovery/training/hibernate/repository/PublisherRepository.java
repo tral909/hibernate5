@@ -14,7 +14,7 @@ public interface PublisherRepository {
 
 	/**
 	 * Saves all publisher instances
-	 * @param publisher
+	 * @param publishers
 	 */
 	void saveAll(List<Publisher> publishers);
 	

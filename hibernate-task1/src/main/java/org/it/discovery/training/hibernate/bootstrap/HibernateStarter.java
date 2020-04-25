@@ -3,7 +3,11 @@ package org.it.discovery.training.hibernate.bootstrap;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.it.discovery.training.hibernate.model.Publisher;
+import org.it.discovery.training.hibernate.repository.PublisherRepository;
+import org.it.discovery.training.hibernate.repository.hibernate.HibernatePublisherRepository;
 import org.it.discovery.training.hibernate.util.HibernateUtil;
+
+import java.time.LocalDateTime;
 
 public class HibernateStarter {
 
@@ -11,13 +15,17 @@ public class HibernateStarter {
 		Session session = null;
 		try (SessionFactory factory = HibernateUtil.getSessionFactory()) {
 
-			session = factory.getCurrentSession();
-			session.beginTransaction();
-			// Persistent operations
+			PublisherRepository repository = new HibernatePublisherRepository(factory);
 			Publisher publisher = new Publisher();
-			session.save(publisher);
+			publisher.setName("Packt");
+			publisher.setCreatedAt(LocalDateTime.now());
+			repository.save(publisher);
 
-			session.getTransaction().commit();
+			System.out.println(publisher);
+
+			System.out.println(repository.findById(publisher.getId()));
+
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			if (session != null) {
