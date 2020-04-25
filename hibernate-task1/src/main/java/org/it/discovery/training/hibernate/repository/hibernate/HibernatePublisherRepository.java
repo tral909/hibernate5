@@ -19,7 +19,7 @@ public class HibernatePublisherRepository implements PublisherRepository {
             session = sessionFactory.getCurrentSession();
             session.beginTransaction();
             session.save(publisher);
-            session.close();
+            session.getTransaction().commit();
         } catch (Exception ex) {
             if(session != null && session.getTransaction().isActive()) {
                 session.getTransaction().rollback();
@@ -47,7 +47,7 @@ public class HibernatePublisherRepository implements PublisherRepository {
             session = sessionFactory.getCurrentSession();
             session.beginTransaction();
             Publisher publisher = session.get(Publisher.class, publisherId);
-            session.close();
+            session.getTransaction().commit();
             return publisher;
         } catch (Exception ex) {
             if(session != null && session.getTransaction().isActive()) {
