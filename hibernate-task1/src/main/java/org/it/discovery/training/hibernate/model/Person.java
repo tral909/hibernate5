@@ -13,10 +13,11 @@ import javax.persistence.*;
  * @author admin
  *
  */
-@Table
+//@Table
 @Entity
 @Getter @Setter
-public class Person {
+@DiscriminatorValue("p")
+public class Person extends BaseEntity{
 	private String name;
 	
 	/**
@@ -25,15 +26,4 @@ public class Person {
 	@OneToMany(mappedBy = "author")
 	private List<Book> books;
 
-	@Id
-	@GeneratedValue
-	private int id;
-	
-	private LocalDateTime created;
-	
-	private LocalDateTime modified;
-
-	public List<Book> getBooks() {
-		return books;
-	}
 }

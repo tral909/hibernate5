@@ -19,23 +19,15 @@ import javax.persistence.*;
  */
 @Getter
 @Setter
-@Table
+//@Table
 @Entity
 @ToString
-public class Publisher {
+@DiscriminatorValue("r")
+public class Publisher extends BaseEntity {
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "publisher")
 	private List<Book> books;
-
-	@Id
-	@GeneratedValue(generator = "counter")
-	@GenericGenerator(name = "counter", strategy = "org.it.discovery.training.hibernate.generator.CounterGenerator")
-	private int id;
-
-	private LocalDateTime createdAt;
-
-	private LocalDateTime modified;
 
 	public List<Book> getBooks() {
 		return books;

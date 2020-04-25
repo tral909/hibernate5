@@ -14,11 +14,12 @@ import javax.persistence.*;
  * @author morenets
  *
  */
-@Table
+//@Table
 @Entity
 @Getter @Setter
 @ToString(exclude = "hits")
-public class Book {
+@DiscriminatorValue("b")
+public class Book extends BaseEntity{
 	private String name;
 
 	@OneToOne
@@ -40,24 +41,4 @@ public class Book {
 
 	@OneToMany(mappedBy = "book")
 	private List<Hit> hits;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
-	
-	private LocalDateTime created;
-	
-	private LocalDateTime modified;
-
-	public Person getAuthor() {
-		return author;
-	}
-
-	public Publisher getPublisher() {
-		return publisher;
-	}
-
-	public List<Hit> getHits() {
-		return hits;
-	}
 }

@@ -7,10 +7,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Table
+//@Table
 @Entity
 @Getter @Setter
-public class Hit {
+@DiscriminatorValue("h")
+public class Hit extends BaseEntity{
 	private String ip;
 	
 	private String browser;
@@ -20,17 +21,5 @@ public class Hit {
 	@ManyToOne
 	@JoinColumn(name = "BOOK_ID")
 	private Book book;
-
-	@Id
-	@GeneratedValue
-	private int id;
-	
-	private LocalDateTime created;
-	
-	private LocalDateTime modified;
-	
-	public Book getBook() {
-		return book;
-	}
 
 }
