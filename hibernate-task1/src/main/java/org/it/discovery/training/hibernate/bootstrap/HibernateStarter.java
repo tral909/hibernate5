@@ -56,6 +56,8 @@ public class HibernateStarter {
 			System.out.println("All books: " + namedBookRepository.findAll());
 			System.out.println("Books with name MySQL: " + namedBookRepository.findWithName("MySQL"));
 
+			System.out.println("Book info = " + bookRepository.findBookInfo(book.getId())); //1000
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			if (session != null) {

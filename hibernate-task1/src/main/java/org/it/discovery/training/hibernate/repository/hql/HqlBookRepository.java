@@ -86,6 +86,22 @@ public class HqlBookRepository implements BookRepository {
 
     @Override
     public BookInfo findBookInfo(int bookId) {
-        return null;
+        Session session = null;
+        try {
+            session = sessionFactory.getCurrentSession();
+            session.beginTransaction();
+            Query<BookInfo> query = session.createQuery(
+                    "select new org.it.discovery.training.hibernate.model.tuple.BookInfo(id, name) FROM Book "+
+                            "WHERE id=:id", BookInfo.class);
+            query.setParameter("id", bookId);
+            BookInfo book = query.getSingleResult();
+            session.getTransaction().commit();
+            return book;
+        } catch (Exception ex) {
+            if (session != null && session.getTransaction().isActive()) {
+                session.getTransaction().rollback();
+            }
+            throw new RuntimeException(ex);
+        }
     }
 }
