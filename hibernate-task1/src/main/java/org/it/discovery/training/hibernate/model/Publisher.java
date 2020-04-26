@@ -24,6 +24,9 @@ import java.util.List;
 public class Publisher extends BaseEntity {
     private String name;
 
+    @Embedded
+    private Address address;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "publisher")
     private List<Book> books;
 
