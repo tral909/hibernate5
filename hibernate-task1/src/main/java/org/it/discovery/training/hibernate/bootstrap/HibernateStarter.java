@@ -3,6 +3,7 @@ package org.it.discovery.training.hibernate.bootstrap;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.it.discovery.training.hibernate.model.Book;
+import org.it.discovery.training.hibernate.model.Hit;
 import org.it.discovery.training.hibernate.model.Publisher;
 import org.it.discovery.training.hibernate.repository.BookRepository;
 import org.it.discovery.training.hibernate.repository.PublisherRepository;
@@ -27,6 +28,12 @@ public class HibernateStarter {
 			Book book = new Book();
 			book.setName("Hibernate");
 			publisher.addBook(book);
+
+			Hit hit = new Hit();
+			hit.setViewed(LocalDateTime.now());
+			hit.setBrowser("Chrome");
+			hit.setIp("localhost");
+			book.addHit(hit);
 			repository.save(publisher);
 
 			System.out.println(publisher);

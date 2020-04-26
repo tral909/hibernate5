@@ -4,8 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,6 +47,17 @@ public class Book extends BaseEntity {
      */
     private int pages;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     private List<Hit> hits;
+
+    @Formula("(select count(hit.id) from HIT hit where hit.BOOK_ID=id)")
+    private Integer hitCount;
+
+    public void addHit(Hit hit) {
+        if(hits == null) {
+            hits = new ArrayList<>();
+        }
+        hits.add(hit);
+        hit.setBook(this);
+    }
 }

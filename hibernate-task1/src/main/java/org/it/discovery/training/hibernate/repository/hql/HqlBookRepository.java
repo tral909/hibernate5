@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.it.discovery.training.hibernate.model.Book;
+import org.it.discovery.training.hibernate.model.tuple.BookInfo;
+import org.it.discovery.training.hibernate.model.tuple.LibraryInfo;
 import org.it.discovery.training.hibernate.repository.BookRepository;
 
 import java.util.List;
@@ -73,6 +75,17 @@ public class HqlBookRepository implements BookRepository {
 
     @Override
     public List<Book> findSortedBooks() {
+        return null;
+    }
+
+    @Override
+    public LibraryInfo findLibraryInfo() {
+        //TODO
+        return null;
+    }
+
+    @Override
+    public BookInfo findBookInfo(int bookId) {
         return null;
     }
 }

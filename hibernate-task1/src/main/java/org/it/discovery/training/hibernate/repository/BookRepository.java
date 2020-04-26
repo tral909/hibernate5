@@ -3,6 +3,8 @@ package org.it.discovery.training.hibernate.repository;
 import java.util.List;
 
 import org.it.discovery.training.hibernate.model.Book;
+import org.it.discovery.training.hibernate.model.tuple.BookInfo;
+import org.it.discovery.training.hibernate.model.tuple.LibraryInfo;
 
 public interface BookRepository {
 	
@@ -27,7 +29,7 @@ public interface BookRepository {
 
 	/**
 	 * Returns all the books where number of pages is greater than pages parameter
-	 * @param name
+	 * @param pages
 	 * @return
 	 */
 	List<Book> findWithMorePages(int pages);
@@ -52,6 +54,14 @@ public interface BookRepository {
 	 * Returns all the books sorted by name
 	 * @return
 	 */
-	List<Book> findSortedBooks();	
+	List<Book> findSortedBooks();
+
+	/**
+	 *
+	 * @return
+	 */
+	LibraryInfo findLibraryInfo();
+
+	BookInfo findBookInfo(int bookId);
 	
 }
